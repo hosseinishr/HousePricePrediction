@@ -96,9 +96,9 @@ In this step the following have been implemented:
 - Independant dataframe (x_train, x_test) were amended to take only those 40 RFE selected features.
 
 ### Base Regression model
-The LinearRegression() class of sklearn was fitted to x_train:
-R2 score (Base model) on train set:  0.8686
-R2 score (Base model) on test set :  0.7859
+The LinearRegression() class of sklearn was fitted to x_train:  
+R2 score (Base model) on train set:  0.8686  
+R2 score (Base model) on test set :  0.7859  
 
 ### Ridge Regression
 $R^2$ score on the train set and test set were plotted against a range of lambda values for a Ridge regression model:
