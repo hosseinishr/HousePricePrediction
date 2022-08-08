@@ -50,7 +50,7 @@ For this purpose, we take 25% and 90% quantiles as the InterQuantile Range (IQR)
 ### Numeric columns EDA
 Some of the numeric columns were selected for EDA and pair plot visualisation as below.
 
-<img src="/images/num-eda.png" width = 1000>
+<img src="/images/num-eda.png" width = 1100>
 
 As can be seen:
 - There is a linear correlation between some of the numeric columns and the target column. Hence, a linear regression model can be considered and trained.
