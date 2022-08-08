@@ -106,10 +106,10 @@ $R^2$ score on the train set and test set were plotted against a range of lambda
 
 I would choose $Lambda = 1000$ as the best value for lambda, since the values of $R^2$ score of train and test are close. Increasing $Lambda$ beyond this value, although gives similar values of $R^2$ score of train and test, however, the $R^2$ score values are really low and the model is under-fit.  
   
-With $Lambda = 1000$:
-R2 score (Ridge model) on train set:  0.6984
-R2 score (Ridge model) on test set :  0.7040
-
+With $Lambda = 1000$:  
+R2 score (Ridge model) on train set:  0.6984  
+R2 score (Ridge model) on test set :  0.7040  
+  
 The Ridge model has identified the following variables as the most significant ones:
 - OverallQual (rating of the overall material and finish of the house)
 - 1stFlrSF (First floor surface area in square feet)
@@ -123,10 +123,10 @@ $R^2$ score on the train set and test set were plotted against a range of lambda
 
 I would choose $Lambda = 0.1$ as the best value for lambda, since the values of $R^2$ score of train and test are close. Increasing $Lambda$ beyond this value, although gives similar values of $R^2$ score of train and test, however, the $R^2$ score values are really low and the model is under-fit.  
 
-With $Lambda = 0.1$:
-R2 score (Ridge model) on train set:  0.7266
-R2 score (Ridge model) on test set :  0.7348
-
+With $Lambda = 0.1$:  
+R2 score (Ridge model) on train set:  0.7266  
+R2 score (Ridge model) on test set :  0.7348  
+  
 The Lasso model has identified the following variables as the most important ones:
 - OverallQual (rating of the overall material and finish of the house)
 - 1stFlrSF (First floor surface area in square feet)
