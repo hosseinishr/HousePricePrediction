@@ -75,10 +75,10 @@ As can be seen, the categorical columns have contribution to the target variable
 
 
 ### Visualising the target variable 'SalePrice'
-<img src="/images/target-eda.png" width = 500>
+<img src="/images/target-eda.png" width = 800>
 
 ### Heatmap of the correlations of the numeric features
-<img src="/images/heatmap.png" width = 1000>
+<img src="/images/heatmap.png" width = 1200>
 
 As can be seen from the heatmap:
 - The 'SalePrice' is highly correlated with several features including 'MasVnrArea', 'TotalBsmtSF', '1stFlrSF', 'GrLivArea', 'FullBath', 'GarageCars', and 'GarageArea'.
