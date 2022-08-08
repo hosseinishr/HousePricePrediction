@@ -102,7 +102,7 @@ R2 score (Base model) on test set :  0.7859
 
 ### Ridge Regression
 $R^2$ score on the train set and test set were plotted against a range of lambda values for a Ridge regression model:
-<img src="/images/ridge.png" width = 500>
+<img src="/images/ridge.png" width = 800>
 
 I would choose $Lambda = 1000$ as the best value for lambda, since the values of $R^2$ score of train and test are close. Increasing $Lambda$ beyond this value, although gives similar values of $R^2$ score of train and test, however, the $R^2$ score values are really low and the model is under-fit.  
   
@@ -119,7 +119,7 @@ The Ridge model has identified the following variables as the most significant o
   
 ### Lasso Regression
 $R^2$ score on the train set and test set were plotted against a range of lambda values for a Lasso regression model:
-<img src="/images/lasso.png" width = 500>
+<img src="/images/lasso.png" width = 800>
 
 I would choose $Lambda = 0.1$ as the best value for lambda, since the values of $R^2$ score of train and test are close. Increasing $Lambda$ beyond this value, although gives similar values of $R^2$ score of train and test, however, the $R^2$ score values are really low and the model is under-fit.  
 
@@ -157,7 +157,7 @@ Analysis of the histogram and the scatter plot of the residuals reveals that:
   
 # Step 5: Summarising the Base, Ridge, and Lasso models, and Conclusion
 Comparison of $R^2$ score of the Base, Ridge, and Lasso models  
-<img src="/images/r2.png" width = 100>
+<img src="/images/r2.png" width = 300>
 
 Coefficients of Ridge regression model  
 <img src="/images/ridge-coef.png" width = 500>
