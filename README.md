@@ -28,6 +28,8 @@ The dataset was successfully imported, and inspected. The following were found:
 - 'Id' column was dropped since it is a randomly generated number, and has no contribution to the target variable.
 - None of the rows were identified having a high percentage of missing values.
 - There are no columns that have only one unique value, so to drop the whole column.
+- No duplicated rows were observed.
+- It was checked for the categorical columns that no numeric value is saved as a string (object) in those columns. No problems were detected in that respect, and hence all our categorical columns are genuinely categorical.
 
 ### Dealing with the missing values
 - The missing values of 'MasVnrType' and 'Electrical' columns were dropped (total of 7 rows).
@@ -76,14 +78,101 @@ As can be seen from the heatmap:
 - The 'SalePrice' is highly correlated with several features including 'MasVnrArea', 'TotalBsmtSF', '1stFlrSF', 'GrLivArea', 'FullBath', 'GarageCars', and 'GarageArea'.
 - There are high correlations of more than 0.50 between some of the features, e.g. between 'TotRmsAbvGrd' and '2ndFlrSF', 'GrLivArea', 'FullBath', and 'BedroomAbvGr'. However, let RFE selects the most important features.  
   
- 
+## Step 2: Data Preparation for Building Model
+In this step the following have been implemented:  
+- Dummy variables (columns) for the categorical columns are created and the original categorical columns were dropped.
+- The dataframe has been split into train dataframe and test dataframes.
+- The standard scaling is applied only to the numeric columns of the train dataframe, since the rest of the columns are 0/1 's from dummy variables.
+- Dependent feature (y_train, y_test) and independant dataframe (x_train, x_test) has been created.
 
-- 
-- Also, the type of the columns are as expected, based on the observation of the head() of the dataframe.
-- 
-- independent variable: the rest of the variables (features)
-- No duplicated rows were observed.
-- Some of the columns that were not needed for the analysis and model building were dropped ('instant', 'dteday', 'casual', 'registered').
+## Step 3: Model Building and Training
+- RFE used to select the 40 most significant features.
+- Independant dataframe (x_train, x_test) were amended to take only those 40 RFE selected features.
 
+### Base Regression model
+The LinearRegression() class of sklearn was fitted to x_train:
+R2 score (Base model) on train set:  0.8686
+R2 score (Base model) on test set :  0.7859
 
+### Ridge Regression
+$R^2$ score on the train set and test set were plotted against a range of lambda values for a Ridge regression model:
+<img src="/images/ridge.png" width = 500>
 
+I would choose $Lambda = 1000$ as the best value for lambda, since the values of $R^2$ score of train and test are close. Increasing $Lambda$ beyond this value, although gives similar values of $R^2$ score of train and test, however, the $R^2$ score values are really low and the model is under-fit.  
+  
+With $Lambda = 1000$:
+R2 score (Ridge model) on train set:  0.6984
+R2 score (Ridge model) on test set :  0.7040
+
+The Ridge model has identified the following variables as the most significant ones:
+- OverallQual (rating of the overall material and finish of the house)
+- 1stFlrSF (First floor surface area in square feet)
+- 2ndFlrSF (Second floor surface area in square feet)
+- TotalBsmtSF (Total basement floor surface area in square feet)
+- BsmtFinSF1 (Type 1 finished in square feet)
+  
+### Lasso Regression
+$R^2$ score on the train set and test set were plotted against a range of lambda values for a Lasso regression model:
+<img src="/images/lasso.png" width = 500>
+
+I would choose $Lambda = 0.1$ as the best value for lambda, since the values of $R^2$ score of train and test are close. Increasing $Lambda$ beyond this value, although gives similar values of $R^2$ score of train and test, however, the $R^2$ score values are really low and the model is under-fit.  
+
+With $Lambda = 0.1$:
+R2 score (Ridge model) on train set:  0.7266
+R2 score (Ridge model) on test set :  0.7348
+
+The Lasso model has identified the following variables as the most important ones:
+- OverallQual (rating of the overall material and finish of the house)
+- 1stFlrSF (First floor surface area in square feet)
+- 2ndFlrSF (Second floor surface area in square feet)
+- BsmtFinSF1 (Type 1 finished in square feet)
+- TotalBsmtSF (Total basement floor surface area in square feet)  
+
+As can be seen, Lasso's 5 most significant features are exactly the same as the 5 most significant features of Ridge regressor, except the ranking of the last two are different.  
+  
+## Step 4: Residual Analysis
+  
+### Ridge model residual analysis
+
+#### Ridge model residual analysis
+<img src="/images/ridge-hist.png" width = 500>
+<img src="/images/ridge-scatter.png" width = 500>
+
+#### Lasso model residual analysis
+<img src="/images/lasso-hist.png" width = 500>
+<img src="/images/lasso-scatter.png" width = 500>
+
+Analysis of the histogram and the scatter plot of the residuals reveals that:
+
+- the residuals follow a normal distribution with a mean of zero, as expected as one of the conditions of the MLR assumptions.
+- the residuals are scattered around 0, and are independent of each other.
+- the residuals have constant variance (homoscedasticity).
+  
+  
+# Step 5: Summarising the Base, Ridge, and Lasso models, and Conclusion
+Comparison of $R^2$ score of the Base, Ridge, and Lasso models
+<img src="/images/r2.png" width = 500>
+
+Coefficients of Ridge regression model
+<img src="/images/ridge-coef.png" width = 500>
+
+Coefficients of Lasso regression model
+<img src="/images/lasso-coef.png" width = 500>
+
+As can be seen, by comparing the values of $R^2$ score of different models, the Lasso model is chosen due to the following reasons:
+- The higher $R^2$ score compared to the Ridge model, and the lower difference between $R^2$ score of train and test in comparison to the base model. In other words, the $R^2$ score of the base model is higher than the Lasso, however, the difference between the $R^2$ score of train and test sets of the base model is higher than that of the Lasso model, which means the base model is slightly over-fit.
+- The Lasso model has only 5 non-zero coefficients for the features, and while having a higher $R^2$ score compared to the Ridge, seems to be simpler and more generalisable.
+
+## Answer to the Business Problem
+Accordingly, the most significant variables (of the selected Lasso model) describing the price of a house, with an **$R^2$ score of around 73%** are:
+- OverallQual (rating of the overall material and finish of the house)
+- 1stFlrSF (First floor surface area in square feet)
+- 2ndFlrSF (Second floor surface area in square feet)
+- BsmtFinSF1 (Type 1 finished in square feet)
+- TotalBsmtSF (Total basement floor surface area in square feet)  
+  
+  
+# Acknowledgements
+- I would like to acknowledge the feedback, support and dataset provision by [upGrad](https://www.upgrad.com/gb) and The [International Institute of Information Technology (IIIT), Bangalore](https://www.iiitb.ac.in/).  
+- Also, I would like to express my gratitude to [Nishan Ali](https://www.linkedin.com/in/nishan-ali-826552166/) and Eshan Tiwari for providing clarification and guidance to carry out this project.   
+- Furthermore, the valuable feedback from [Dr Tayeb Jamali](https://www.linkedin.com/in/tayeb-jamali-b1a10937/) is highly appreciated.
