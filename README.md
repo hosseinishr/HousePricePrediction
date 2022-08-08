@@ -50,7 +50,7 @@ For this purpose, we take 25% and 90% quantiles as the InterQuantile Range (IQR)
 ### Numeric columns EDA
 Some of the numeric columns were selected for EDA and pair plot visualisation as below.
 
-<img src="/images/num-eda.png" width = 500>
+<img src="/images/num-eda.png" width = 1000>
 
 As can be seen:
 - There is a linear correlation between some of the numeric columns and the target column. Hence, a linear regression model can be considered and trained.
@@ -72,7 +72,7 @@ As can be seen, the categorical columns have contribution to the target variable
 <img src="/images/target-eda.png" width = 500>
 
 ### Heatmap of the correlations of the numeric features
-<img src="/images/heatmap.png" width = 500>
+<img src="/images/heatmap.png" width = 1000>
 
 As can be seen from the heatmap:
 - The 'SalePrice' is highly correlated with several features including 'MasVnrArea', 'TotalBsmtSF', '1stFlrSF', 'GrLivArea', 'FullBath', 'GarageCars', and 'GarageArea'.
@@ -150,13 +150,13 @@ Analysis of the histogram and the scatter plot of the residuals reveals that:
   
   
 # Step 5: Summarising the Base, Ridge, and Lasso models, and Conclusion
-Comparison of $R^2$ score of the Base, Ridge, and Lasso models
-<img src="/images/r2.png" width = 500>
+Comparison of $R^2$ score of the Base, Ridge, and Lasso models  
+<img src="/images/r2.png" width = 100>
 
-Coefficients of Ridge regression model
+Coefficients of Ridge regression model  
 <img src="/images/ridge-coef.png" width = 500>
 
-Coefficients of Lasso regression model
+Coefficients of Lasso regression model  
 <img src="/images/lasso-coef.png" width = 500>
 
 As can be seen, by comparing the values of $R^2$ score of different models, the Lasso model is chosen due to the following reasons:
