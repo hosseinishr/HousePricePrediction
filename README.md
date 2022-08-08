@@ -59,11 +59,11 @@ As can be seen:
 
 ### Categorical columns EDA
 
-<img src="/images/cat1-eda.png" width = 500>
-<img src="/images/cat2-eda.png" width = 500>
-<img src="/images/cat3-eda.png" width = 500>
-<img src="/images/cat4-eda.png" width = 500>
-<img src="/images/cat5-eda.png" width = 500>
+<img src="/images/cat1-eda.png" width = 700>  
+<img src="/images/cat2-eda.png" width = 700>  
+<img src="/images/cat3-eda.png" width = 700>  
+<img src="/images/cat4-eda.png" width = 700>  
+<img src="/images/cat5-eda.png" width = 700>  
 
 As can be seen, the categorical columns have contribution to the target variable since moving across different categories of each of these columns leads to changes in the range of the target variable.  
 
