@@ -24,7 +24,7 @@ The objective is to analyse the data, develop a linear regression model, if appl
 The dataset was successfully imported, and inspected. The following were found:
 - The dataset has 1460 rows and 81 columns
 - There are 6 columns: 'PoolQC', 'MiscFeature', 'Alley', 'Fence, 'FireplaceQu', and 'LotFrontage', that have high number of missing values (99.5% to 17.7% of the rows of the column). These columns were dropped.
-- Dependent variable: 'SalePrice' or the target variable
+- Dependent variable: 'SalePrice' is the target variable
 - 'Id' column was dropped since it is a randomly generated number, and has no contribution to the target variable.
 - None of the rows were identified having a high percentage of missing values.
 - There are no columns that have only one unique value, so to drop the whole column.
